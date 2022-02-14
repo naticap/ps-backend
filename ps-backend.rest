@@ -31,4 +31,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{host}}products/3
+DELETE {{host}}products/11
