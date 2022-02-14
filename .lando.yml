@@ -2,3 +2,7 @@ name: ps-backend
 recipe: laravel
 config:
   webroot: public
+
+database:
+    type: mysql
+    portforward: true
