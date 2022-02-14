@@ -1,0 +1,4 @@
+name: ps-backend
+recipe: laravel
+config:
+  webroot: public
