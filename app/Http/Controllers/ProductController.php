@@ -11,11 +11,25 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ProductResource::make(Product::all());
+        $product = new Product();
+        $limit = isset($request->limit) ? $request->limit : 15;
+
+        if(isset($request->keyword)) {
+            $product = $product->where('name', 'like', '%'.$request->keyword.'%')
+                            ->orWhere('description', 'like', '%'.$request->keyword.'%')
+                            ->orWhere('price', 'like', '%'.$request->keyword.'%')
+                            ->orWhere('quantity', 'like', '%'.$request->keyword.'%')
+                            ->paginate($limit)->withQueryString();                            
+        } else {
+            $product = $product->paginate($limit);
+        }
+
+        return ProductResource::make($product);
     }
 
     /**

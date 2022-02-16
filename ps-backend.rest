@@ -1,16 +1,36 @@
 @host=http://ps-backend.lndo.site/api/
+@token=13|NEROwJvP6sRcJID1dfDgzldAVCzPSu2qHjZcgKGg
 
+POST {{host}}auth
+Content-Type: application/json
 
-GET {{host}}products
-
+{
+    "email": "kimberly.littel@example.com",
+    "password": "password",
+    "device_name": "web"
+}
+###
+GET {{host}}logout
+Accept: "application/json"
+Authorization: Bearer {{token}}
 ###
 
-GET {{host}}products/2
 
+###
+GET {{host}}products?page=4&limit=5
+Accept: "application/json"
+Authorization: Bearer {{token}}
+###
+
+GET {{host}}products/11
+Accept: "application/json"
+Authorization: Bearer {{token}}
 ###
 
 POST {{host}}products
 Content-Type: application/json
+Accept: "application/json"
+Authorization: Bearer {{token}}
 
 {
     "name": "Product 3",
@@ -20,11 +40,13 @@ Content-Type: application/json
 }
 
 ###
-PATCH {{host}}products/3
+PATCH {{host}}products/11
+Accept: "application/json"
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-    "name": "Product 3",
+    "name": "Product 3 Updated",
     "description": "test desc",
     "price": 50000,
     "quantity": 1
@@ -32,3 +54,6 @@ Content-Type: application/json
 
 ###
 DELETE {{host}}products/11
+Accept: "application/json"
+Authorization: Bearer {{token}}
+
